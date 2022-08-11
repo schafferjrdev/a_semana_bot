@@ -1,0 +1,1 @@
+# semana_praticamente_encerrada
