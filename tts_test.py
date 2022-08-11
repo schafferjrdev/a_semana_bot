@@ -1,5 +1,5 @@
 import pyttsx3 
-tts = pyttsx3.init('sapi5') 
+tts = pyttsx3.init() 
 voices = tts.getProperty('voices')
 
 if(voices[1].name == 'Microsoft Maria Desktop - Portuguese(Brazil)'):
