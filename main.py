@@ -22,7 +22,6 @@ def semana_encerrada(date):
     print('Request date from: ', datetime.fromtimestamp(date))
     # msg_date = datetime.fromtimestamp(1660326375)
     msg_date = datetime.fromtimestamp(date)
-    datetime.date()
 
     num = msg_date.weekday()
 

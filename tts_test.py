@@ -75,4 +75,4 @@ semana = sao + horas + encerrada
 
 
 print('locale', tzlocal.get_localzone())
-print('Request date from: ', datetime.fromtimestamp(1660326375))
+print('Request date from: ', datetime.utcfromtimestamp(1660326375))
