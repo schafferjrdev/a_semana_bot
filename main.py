@@ -17,9 +17,10 @@ bot = telebot.TeleBot(API_KEY)
 
 
 def semana_encerrada(date):
-    print('locale', tzlocal.get_localzone())
+    print('locale', tzlocal.get_localzone_name())
     print('unix timestamp', date)
-    print('Request date from: ', datetime.fromtimestamp(date))
+    print('Request date from: ', datetime.fromtimestamp(date).astimezone())
+
     # msg_date = datetime.fromtimestamp(1660326375)
     msg_date = datetime.fromtimestamp(date)
 

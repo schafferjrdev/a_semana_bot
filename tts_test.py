@@ -74,5 +74,12 @@ semana = sao + horas + encerrada
 # mp3IO.getvalue()
 
 
-print('locale', tzlocal.get_localzone())
-print('Request date from: ', datetime.utcfromtimestamp(1660326375))
+# print('locale', tzlocal.get_localzone())
+# print('locale 2', tzlocal.get_localzone_name())
+# print(pytz.timezone(tzlocal.get_localzone_name()))
+
+# print('Request date from: ', datetime.fromtimestamp(
+#     1660329709))
+
+now = datetime.fromtimestamp(1660329709).astimezone()
+print(now)
