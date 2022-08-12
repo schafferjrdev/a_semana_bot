@@ -1,0 +1,5 @@
+telebot
+datetime
+pydub
+pyttsx3
+io

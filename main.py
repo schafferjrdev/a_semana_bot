@@ -14,19 +14,27 @@ def semana_encerrada():
 
     num = datetime.today().weekday()
 
-    sem = ("uma Segunda-feira", "uma Terça-feira", "uma Quarta-feira", "uma Quinta-feira", "uma Sexta-feira", "um Sábado-feira", "um Domingo-feira")
+    sem = ("uma Segunda-feira", "uma Terça-feira", "uma Quarta-feira", "uma Quinta-feira", "uma Sexta-feira", "um Sábado", "um Domingo")
 
     def getPeriod(h):
-        if h <= 3: 
-            return 'madrugada'
+        if h == 0:
+            return ''
+        if h <= 3:
+            return ' da madrugada'
         if h < 12:
-            return 'manhã'
-        if h < 18:
-            return 'tarde'
-        return 'noite'
+            return ' da manhã'
+        if h < 19:
+            return ' da tarde'
+        return ' da noite'
+    
+    def getHour(h):
+        if h == '00':
+            return 'meia-noite'
+        if h == '01' or h == '13':
+            return 'Uma hora'
+        return f"{now.strftime('%I')} horas".lstrip("0")
 
-    # current_time = now.strftime(f"São %I horas da {getPeriod(int(now.strftime('%H')))} de {sem[num]}, não é? Semana praticamente encerrada!").replace('0','')
-    current_time = now.strftime(f"%I horas da {getPeriod(int(now.strftime('%H')))} de {sem[num]}").replace('0','')
+    current_time = now.strftime(f"{getHour(now.strftime('%H'))}{getPeriod(int(now.strftime('%H')))} de {sem[num]}")
 
     return current_time
 
