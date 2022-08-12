@@ -1,4 +1,5 @@
 import telebot
+from decouple import config 
 from datetime import datetime
 from pydub import AudioSegment
 import pyttsx3 
@@ -7,8 +8,7 @@ from pydub.utils import which
 
 AudioSegment.converter = which("ffmpeg")
 
-
-API_KEY = "5336060283:AAFZXPmVx71gWgb2dtXBnuv6rmmUwHHG4UQ"
+API_KEY = config("TOKEN_TELEGRAM")
 
 bot = telebot.TeleBot(API_KEY)
 
@@ -53,10 +53,6 @@ def get_audio():
     tts.save_to_file(semana_encerrada(), './assets/horas.mp3')
     tts.runAndWait()
 
-@bot.message_handler(commands=["encerrada"])
-def responder(msg):
-    get_audio()
-
     sao = AudioSegment.from_file("./assets/sao.mp3")
     horas = AudioSegment.from_file("./assets/horas.mp3")
     encerrada = AudioSegment.from_file("./assets/encerrada.mp3")
@@ -64,8 +60,15 @@ def responder(msg):
     semana = sao + horas + encerrada
     mp3IO=BytesIO()
     semana.export(mp3IO, format="mp3")
-    mp3IO.getvalue()
+    return mp3IO.getvalue()
+ 
 
-    bot.send_audio(msg.chat.id, mp3IO.getvalue(), performer='@semana_bot', title='São que horas?')
+@bot.message_handler(commands=["encerrada"])
+def responder(msg):
+    # To send an Audio File
+    # bot.send_audio(msg.chat.id, get_audio(), performer='@a_semana_bot', title='São que horas?')
+
+    # To send a Message File
+    bot.reply_to(msg, f"São {semana_encerrada()}, Ahh... Semana praticamente encerrada!")
 
 bot.polling()
