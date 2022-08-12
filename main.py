@@ -12,10 +12,11 @@ API_KEY = config("TOKEN_TELEGRAM")
 
 bot = telebot.TeleBot(API_KEY)
 
-def semana_encerrada():
-    now = datetime.now()
+def semana_encerrada(date):
+    print('Request date from: ',datetime.fromtimestamp(date))
+    now = datetime.fromtimestamp(date)
 
-    num = datetime.today().weekday()
+    num = now.weekday()
 
     sem = ("uma Segunda-feira", "uma Terça-feira", "uma Quarta-feira", "uma Quinta-feira", "uma Sexta-feira", "um Sábado", "um Domingo")
 
@@ -41,7 +42,7 @@ def semana_encerrada():
 
     return current_time
 
-def get_audio():
+def get_audio(date):
     tts = pyttsx3.init() 
     voices = tts.getProperty('voices')
 
@@ -50,7 +51,7 @@ def get_audio():
     else:
         tts.setProperty('voice', 'brazil')
 
-    tts.save_to_file(semana_encerrada(), './assets/horas.mp3')
+    tts.save_to_file(semana_encerrada(date), './assets/horas.mp3')
     tts.runAndWait()
 
     sao = AudioSegment.from_file("./assets/sao.mp3")
@@ -66,9 +67,9 @@ def get_audio():
 @bot.message_handler(commands=["encerrada"])
 def responder(msg):
     # To send an Audio File
-    # bot.send_audio(msg.chat.id, get_audio(), performer='@a_semana_bot', title='São que horas?')
+    # bot.send_audio(msg.chat.id, get_audio(msg.date), performer='@a_semana_bot', title='São que horas?')
 
     # To send a Message File
-    bot.reply_to(msg, f"São {semana_encerrada()}, Ahh... Semana praticamente encerrada!")
+    bot.reply_to(msg, f"São {semana_encerrada(msg.date)}, Ahh... Semana praticamente encerrada!")
 
 bot.polling()
