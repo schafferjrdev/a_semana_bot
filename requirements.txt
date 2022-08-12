@@ -5,3 +5,4 @@ pyttsx3
 python-decouple
 pytz
 tzlocal
+pyrogram
