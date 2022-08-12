@@ -3,6 +3,9 @@ from datetime import datetime
 from pydub import AudioSegment
 import pyttsx3 
 from io import BytesIO
+from pydub.utils import which
+
+AudioSegment.converter = which("ffmpeg")
 
 
 API_KEY = "5336060283:AAFZXPmVx71gWgb2dtXBnuv6rmmUwHHG4UQ"
