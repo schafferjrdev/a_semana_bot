@@ -16,7 +16,7 @@ async def hello(client, message):
     d = datetime.fromisoformat(str(message.date))
     print(d.weekday())
     print(d.strftime('%H'))
-    await message.reply("Hello from Pyrogram!")
+    await message.reply("Sua hora é: ", message.date)
 
 
 app.run()
