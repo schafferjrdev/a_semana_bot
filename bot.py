@@ -13,6 +13,7 @@ app = Client('a_semana_bot', api_hash=API_HASH,
 @app.on_message(filters.command('encerrada'))
 async def hello(client, message):
     print(message.date)
+    print(message)
     d = datetime.fromisoformat(str(message.date))
     print(d.weekday())
     print(d.strftime('%H'))
