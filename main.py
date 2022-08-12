@@ -1,10 +1,13 @@
+from time import time
 import telebot
 from decouple import config
-from datetime import datetime
+from datetime import datetime, timezone
 from pydub import AudioSegment
 import pyttsx3
 from io import BytesIO
 from pydub.utils import which
+import pytz
+import tzlocal
 
 AudioSegment.converter = which("ffmpeg")
 
@@ -14,10 +17,14 @@ bot = telebot.TeleBot(API_KEY)
 
 
 def semana_encerrada(date):
+    print('locale', tzlocal.get_localzone())
+    print('unix timestamp', date)
     print('Request date from: ', datetime.fromtimestamp(date))
-    now = datetime.fromtimestamp(date)
+    # msg_date = datetime.fromtimestamp(1660326375)
+    msg_date = datetime.fromtimestamp(date)
+    datetime.date()
 
-    num = now.weekday()
+    num = msg_date.weekday()
 
     sem = ("uma Segunda-feira", "uma Terça-feira", "uma Quarta-feira",
            "uma Quinta-feira", "uma Sexta-feira", "um Sábado", "um Domingo")
@@ -38,10 +45,10 @@ def semana_encerrada(date):
             return 'meia-noite'
         if h == '01' or h == '13':
             return 'Uma hora'
-        return f"{now.strftime('%I')} horas".lstrip("0")
+        return f"{msg_date.strftime('%I')} horas".lstrip("0")
 
-    current_time = now.strftime(
-        f"{getHour(now.strftime('%H'))}{getPeriod(int(now.strftime('%H')))} de {sem[num]}")
+    current_time = msg_date.strftime(
+        f"{getHour(msg_date.strftime('%H'))}{getPeriod(int(msg_date.strftime('%H')))} de {sem[num]}")
 
     return current_time
 
@@ -70,7 +77,6 @@ def get_audio(date):
 
 @bot.message_handler(commands=["encerrada"])
 def responder(msg):
-    print(msg)
     # To send an Audio File
     # bot.send_audio(msg.chat.id, get_audio(msg.date), performer='@a_semana_bot', title='São que horas?')
 
