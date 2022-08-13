@@ -1,3 +1,4 @@
+import time
 import pyttsx3
 from datetime import datetime
 from pydub import AudioSegment
@@ -81,5 +82,13 @@ semana = sao + horas + encerrada
 # print('Request date from: ', datetime.fromtimestamp(
 #     1660329709))
 
-now = datetime.fromtimestamp(1660329709).astimezone()
-print(now)
+
+# tz2 = pytz.timezone('America/Sao_Paulo')
+# print(datetime.fromtimestamp(1660331265, tz2).strftime('%H'))
+
+
+print('Request date from: ', datetime.utcfromtimestamp(1660331265))
+print('Request date from: ', datetime.fromtimestamp(1660331265))
+
+# Request date from:  2022-08-12 19:07:45+00:00
+# Request date from:  2022-08-12 16:07:45-03:00

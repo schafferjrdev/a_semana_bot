@@ -1,7 +1,7 @@
 from time import time
 import telebot
 from decouple import config
-from datetime import datetime, timezone
+from datetime import datetime
 from pydub import AudioSegment
 import pyttsx3
 from io import BytesIO
@@ -17,12 +17,10 @@ bot = telebot.TeleBot(API_KEY)
 
 
 def semana_encerrada(date):
-    print('locale', tzlocal.get_localzone_name())
-    print('unix timestamp', date)
-    print('Request date from: ', datetime.fromtimestamp(date).astimezone())
+    print('Server date: ', datetime.fromtimestamp(date))
 
-    # msg_date = datetime.fromtimestamp(1660326375)
-    msg_date = datetime.fromtimestamp(date)
+    msg_date = datetime.fromtimestamp(date, pytz.timezone('America/Sao_Paulo'))
+    print('Message date: ', msg_date)
 
     num = msg_date.weekday()
 
