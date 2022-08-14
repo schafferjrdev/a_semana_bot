@@ -57,19 +57,21 @@ def get_audio(date):
     # if (voices[1].name == 'Microsoft Maria Desktop - Portuguese(Brazil)'):
     #     tts.setProperty('voice', voices[1].id)
     # else:
-    tts.setProperty('voice', 'brazil')
+    # tts.setProperty('voice', 'brazil')
 
-    tts.save_to_file(semana_encerrada(date), './assets/horas.mp3')
+    # tts.save_to_file(semana_encerrada(date), './assets/horas.mp3')
+    print(date)
+    tts.say('hello')
     tts.runAndWait()
 
-    sao = AudioSegment.from_file("./assets/sao.mp3")
-    horas = AudioSegment.from_file("./assets/horas.mp3")
-    encerrada = AudioSegment.from_file("./assets/encerrada.mp3")
+    # sao = AudioSegment.from_file("./assets/sao.mp3")
+    # horas = AudioSegment.from_file("./assets/horas.mp3")
+    # encerrada = AudioSegment.from_file("./assets/encerrada.mp3")
 
-    semana = sao + horas + encerrada
-    mp3IO = BytesIO()
-    semana.export(mp3IO, format="mp3")
-    return mp3IO.getvalue()
+    # semana = sao + horas + encerrada
+    # mp3IO = BytesIO()
+    # semana.export(mp3IO, format="mp3")
+    # return mp3IO.getvalue()
 
 
 @bot.message_handler(commands=["encerrada"])
