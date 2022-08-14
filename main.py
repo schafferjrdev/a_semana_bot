@@ -55,12 +55,14 @@ def get_audio(date):
     tts = pyttsx3.init()
     voices = tts.getProperty('voices')
 
-    if (voices[1].name == 'Microsoft Maria Desktop - Portuguese(Brazil)'):
-        tts.setProperty('voice', voices[1].id)
-    else:
-        tts.setProperty('voice', 'brazil')
+    # if (voices[1].name == 'Microsoft Maria Desktop - Portuguese(Brazil)'):
+    #     tts.setProperty('voice', voices[1].id)
+    # else:
+    #     tts.setProperty('voice', 'brazil')
 
-    tts.save_to_file(semana_encerrada(date), './assets/horas.mp3')
+    # tts.save_to_file(semana_encerrada(date), './assets/horas.mp3')
+    for v in voices:
+        print(v)
     tts.runAndWait()
 
     sao = AudioSegment.from_file("./assets/sao.mp3")
