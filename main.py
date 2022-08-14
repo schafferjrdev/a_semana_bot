@@ -7,7 +7,6 @@ import pyttsx3
 from io import BytesIO
 from pydub.utils import which
 import pytz
-import tzlocal
 
 AudioSegment.converter = which("ffmpeg")
 
