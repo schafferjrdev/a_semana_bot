@@ -16,10 +16,7 @@ bot = telebot.TeleBot(API_KEY)
 
 
 def semana_encerrada(date):
-    print('Server date: ', datetime.fromtimestamp(date))
-
     msg_date = datetime.fromtimestamp(date, pytz.timezone('America/Sao_Paulo'))
-    print('Message date: ', msg_date)
 
     num = msg_date.weekday()
 
@@ -68,6 +65,7 @@ def get_audio(date):
 
 @bot.message_handler(commands=["encerrada"])
 def responder(msg):
+    print('Quem perguntou?', msg.chat.first_name)
     # To send an Audio File
     bot.send_audio(msg.chat.id, get_audio(msg.date),
                    performer='@a_semana_bot', title='São que horas?')
