@@ -1,11 +1,11 @@
+from io import BytesIO
+from gtts import gTTS
 import time
 import pyttsx3
 from datetime import datetime
 from pydub import AudioSegment
 from pydub.playback import play
 from pydub.utils import which
-import pytz
-import tzlocal
 
 AudioSegment.converter = which("ffmpeg")
 
@@ -57,16 +57,6 @@ def get_audio():
 # get_audio()
 
 
-sao = AudioSegment.from_file("./assets/sao.mp3")
-horas = AudioSegment.from_file("./assets/horas.mp3")
-encerrada = AudioSegment.from_file("./assets/encerrada.mp3")
-silence = AudioSegment.silent(duration=300)
-
-semana = sao + horas + encerrada
-
-# semana.export("./assets/semana.mp3", format="mp3")
-
-
 # from io import BytesIO
 # seg=AudioSegment.from_file("./assets/horas.mp3")
 
@@ -85,10 +75,34 @@ semana = sao + horas + encerrada
 
 # tz2 = pytz.timezone('America/Sao_Paulo')
 # print(datetime.fromtimestamp(1660331265, tz2).strftime('%H'))
-
-
-print('Request date from: ', datetime.utcfromtimestamp(1660331265))
-print('Request date from: ', datetime.fromtimestamp(1660331265))
+# print('Request date from: ', datetime.utcfromtimestamp(1660331265))
+# print('Request date from: ', datetime.fromtimestamp(1660331265))
 
 # Request date from:  2022-08-12 19:07:45+00:00
 # Request date from:  2022-08-12 16:07:45-03:00
+
+# tts.export(tts, format="mp3")
+# mp3IO.getvalue()
+
+# sao = AudioSegment.from_file("./assets/sao.mp3")
+# horas = AudioSegment.from_mp3(tts)
+# encerrada = AudioSegment.from_file("./assets/encerrada.mp3")
+
+
+# semana = sao + horas + encerrada
+
+# semana.export("./assets/semana.mp3", format="mp3")
+
+
+# mp3_fp = BytesIO()
+# tts = gTTS(semana_encerrada(), lang='pt')
+# tts.write_to_fp(mp3_fp)
+# mp3_fp.seek(0)
+
+# sao = AudioSegment.from_file("./assets/sao.mp3")
+# horas = AudioSegment.from_mp3(mp3_fp)
+# encerrada = AudioSegment.from_file("./assets/encerrada.mp3")
+
+# semana = sao + horas + encerrada
+
+# semana.export("semana.mp3", format="mp3")

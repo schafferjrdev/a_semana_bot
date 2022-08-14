@@ -1,5 +1,5 @@
 pyTelegramBotAPI
 datetime
 pydub
-pyttsx3
 python-decouple
+gTTS
