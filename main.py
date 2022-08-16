@@ -63,11 +63,24 @@ def get_audio(date):
     return mp3IO.getvalue()
 
 
+def que_horas_sao(date):
+    msg_date = datetime.fromtimestamp(date, pytz.timezone('America/Sao_Paulo'))
+    num = msg_date.weekday()
+
+    if num == 2 and msg_date.strftime('%H') == '16':
+        semana = AudioSegment.from_file("./assets/semana.mp3")
+        mp3IO = BytesIO()
+        semana.export(mp3IO, format="mp3")
+        return mp3IO.getvalue()
+    else:
+        return get_audio(date)
+
+
 @bot.message_handler(commands=["encerrada"])
 def responder(msg):
-    print('Quem perguntou?', msg.chat.first_name)
+    print('Quem perguntou?', msg.from_user.first_name)
     # To send an Audio File
-    bot.send_audio(msg.chat.id, get_audio(msg.date),
+    bot.send_audio(msg.chat.id, que_horas_sao(msg.date),
                    performer='@a_semana_bot', title='São que horas?')
 
     # To send a Message File
